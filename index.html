@@ -1,0 +1,440 @@
+[12/10/2026 13:28] Winwincash: <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Facture de Douane - Avis de Mise en Recouvrement</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e8eaed;
+    padding: 30px 15px;
+    color: #1a1a1a;
+    line-height: 1.5;
+  }
+  .document {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    border-top: 6px solid #000091;
+    border-bottom: 6px solid #e1000f;
+    position: relative;
+  }
+  /* Bandeau tricolore décoratif */
+  .tricolore {
+    display: flex;
+    height: 6px;
+  }
+  .tricolore div { flex: 1; }
+  .bleu { background: #000091; }
+  .blanc { background: #ffffff; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+  .rouge { background: #e1000f; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 40px 20px;
+    border-bottom: 2px solid #000091;
+    background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+  }
+  .logo-bloc {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .logo-svg { width: 85px; height: 85px; }
+  .header-text h1 {
+    font-size: 18px;
+    color: #000091;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .header-text h2 {
+    font-size: 13px;
+    color: #444;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .ref-bloc {
+    text-align: right;
+    font-size: 12px;
+    color: #333;
+  }
+  .ref-bloc .ref {
+    font-weight: 700;
+    color: #e1000f;
+    font-size: 14px;
+  }
+  .ref-bloc p { margin: 2px 0; }
+
+  .titre-doc {
+    background: #000091;
+    color: #fff;
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .sous-titre-doc {
+    background: #f0f1f7;
+    text-align: center;
+    padding: 8px;
+    font-size: 13px;
+    color: #000091;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+  }
+
+  main { padding: 30px 40px 40px; }
+
+  section { margin-bottom: 28px; }
+  section h3 {
+    font-size: 14px;
+    color: #000091;
+    text-transform: uppercase;
+    border-left: 5px solid #e1000f;
+    padding-left: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .info-bloc {
+    background: #f8f9fc;
+    border: 1px solid #d6d9e0;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .info-bloc p { margin: 4px 0; }
+  .info-bloc strong { color: #333; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  table th {
+    background: #000091;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  table td {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+  }
+  table tr:nth-child(even) td { background: #f8f9fc; }
+
+  .total-row td {
+    background: #000091 !important;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+  }
+  .total-row td:last-child { text-align: right; font-size: 17px; }
+
+  .note {
+    background: #fff8e1;
+    border-left: 4px solid #f0ad00;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #5a4500;
+    margin-top: 12px;
+    border-radius: 3px;
+  }
+
+  .recours {
+    background: #f8f9fc;
+    border: 1px dashed #000091;
+    padding: 14px 18px;
+    font-size: 12.5px;
+    border-radius: 4px;
+  }
+  .recours strong { color: #000091; }
+
+  .signature {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+[12/10/2026 13:28] Winwincash: padding-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+  .signature p { font-size: 13px; }
+  .cachet {
+    border: 2px solid #e1000f;
+    color: #e1000f;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    transform: rotate(-15deg);
+    opacity: 0.85;
+    padding: 8px;
+    line-height: 1.2;
+  }
+
+  footer {
+    background: #f0f1f7;
+    padding: 15px 40px;
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+
+  .badge-infraction {
+    display: inline-block;
+    background: #e1000f;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 700px) {
+    header { flex-direction: column; text-align: center; gap: 15px; }
+    .ref-bloc { text-align: center; }
+    .grid-2 { grid-template-columns: 1fr; }
+    main { padding: 20px; }
+    .signature { flex-direction: column; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="document">
+
+  <div class="tricolore">
+    <div class="bleu"></div>
+    <div class="blanc"></div>
+    <div class="rouge"></div>
+  </div>
+
+  <header>
+    <div class="logo-bloc">
+      <!-- Logo SVG : Marianne stylisée + caducée douanes -->
+      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gradBleu" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#000091"/>
+            <stop offset="100%" stop-color="#00006b"/>
+          </linearGradient>
+        </defs>
+        <!-- Cercle extérieur -->
+        <circle cx="50" cy="50" r="47" fill="url(#gradBleu)" stroke="#e1000f" stroke-width="3"/>
+        <!-- Étoiles UE -->
+        <g fill="#f7d117">
+          <circle cx="50" cy="12" r="2.2"/>
+          <circle cx="72" cy="18" r="2.2"/>
+          <circle cx="85" cy="35" r="2.2"/>
+          <circle cx="88" cy="55" r="2.2"/>
+          <circle cx="78" cy="75" r="2.2"/>
+          <circle cx="60" cy="87" r="2.2"/>
+          <circle cx="40" cy="87" r="2.2"/>
+          <circle cx="22" cy="75" r="2.2"/>
+          <circle cx="12" cy="55" r="2.2"/>
+          <circle cx="15" cy="35" r="2.2"/>
+          <circle cx="28" cy="18" r="2.2"/>
+        </g>
+        <!-- Caducée central simplifié (symbole douanes) -->
+        <g stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <line x1="50" y1="30" x2="50" y2="72"/>
+          <path d="M 38 42 Q 50 38 62 42"/>
+          <path d="M 38 52 Q 50 48 62 52"/>
+          <path d="M 38 62 Q 50 58 62 62"/>
+        </g>
+        <!-- Tête de l'axe -->
+        <circle cx="50" cy="28" r="4" fill="#f7d117"/>
+        <!-- Base -->
+        <rect x="42" y="72" width="16" height="3" fill="#f7d117" rx="1.5"/>
+        <!-- Texte DGDDI -->
+        <text x="50" y="90" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="Arial">DGDDI</text>
+      </svg>
+
+      <div class="header-text">
+        <h1>Direction Générale des Douanes<br>et Droits Indirects</h1>
+        <h2>République Française — Ministère de l'Économie</h2>
+      </div>
+    </div>
+
+    <div class="ref-bloc">
+      <p class="ref">N° DGD-2026-123698</p>
+      <p><strong>Date :</strong> 12/10/2026</p>
+      <p><strong>Service :</strong> Brigade Paris-CDG 2E</p>
+    </div>
+  </header>
+
+  <div class="titre-doc">Avis de Mise en Recouvrement</div>
+  <div class="sous-titre-doc">
+    Infraction à l'obligation déclarative — Transport d'or non déclaré
+    &nbsp;•&nbsp; <span class="badge-infraction">Non-déclaration</span>
+  </div>
+
+  <main>
+
+    <!-- Identification -->
+    <section>
+[12/10/2026 13:28] Winwincash: <h3>1. Identification du contrevenant</h3>
+      <div class="grid-2">
+        <div class="info-bloc">
+          <p><strong>Nom / Prénom :</strong> Dupont Annabelle</p>
+          <p><strong>Date de naissance :</strong> 08/10/1983</p>
+          <p><strong>Nationalité :</strong> Francaise </p>
+        </div>
+        <div class="info-bloc">
+          <p><strong>Pièce d'identité :</strong> [Passeport – N°12AP35490]</p>
+          <p><strong>Adresse :</strong> 34 rue des Boucher Lille 59800</p>
+          <p><strong>Lieu du contrôle :</strong> Aéroport Paris-CDG, Terminal 2E</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Constatation -->
+    <section>
+      <h3>2. Constatation des faits</h3>
+      <p style="font-size:13px; margin-bottom:10px;">
+        Lors du contrôle douanier du <strong>09/10/2026</strong>, le passager a été intercepté en possession de
+        <strong>5 lingots d'or</strong> non déclarés à l'entrée du territoire français.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Poids unitaire</th>
+            <th>Pureté</th>
+            <th>Poids total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lingots d'or (or d'investissement)</td>
+            <td>5</td>
+            <td>1 000 g</td>
+            <td>999,9 ‰</td>
+            <td>5 000 g (5 kg)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Valeur vénale retenue :</strong> 5 kg × 62 000 €/kg = <strong>310 000 €</strong>
+        (valeur de l'or au jour de la constatation).
+      </div>
+    </section>
+
+    <!-- Base légale -->
+    <section>
+      <h3>3. Base légale de l'infraction</h3>
+      <ul style="font-size:13px; padding-left:20px;">
+        <li><strong>Article L152-1 du Code monétaire et financier</strong> : obligation de déclarer tout transport d'or ≥ 10 000 €.</li>
+        <li><strong>Article L152-4 du Code monétaire et financier</strong> : sanctions applicables en cas de non-déclaration.</li>
+        <li><strong>Règlement (UE) 2018/1672</strong> : contrôle des mouvements physiques d'argent liquide.</li>
+      </ul>
+    </section>
+
+    <!-- Calcul -->
+    <section>
+      <h3>4. Calcul des droits, taxes et amendes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nature</th>
+            <th>Taux / Base</th>
+            <th style="text-align:right;">Montant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Droit de douane à l'importation</td>
+            <td>0 % — or d'investissement (SH 7108)</td>
+            <td style="text-align:right;">0,00 €</td>
+          </tr>
+          <tr>
+            <td>TVA à l'importation</td>
+            <td>Exonérée (art. 298 sexdecies A du CGI)</td>
+            <td style="text-align:right;">0,00 €</td>
+          </tr>
+          <tr>
+            <td><strong>Amende pour non-déclaration</strong></td>
+            <td>10 % de la valeur (310 000 €)</td>
+            <td style="text-align:right;"><strong>15 000,00 €</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">TOTAL À PAYER</td>
+            <td>15 000,00 €</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Note importante :</strong> L'or d'investissement est exonéré de droits de douane et de TVA,
+        mais l'obligation déclarative demeure pleine et entière dès 10 000 €. L'amende peut atteindre
+        <strong>10 % de la valeur</strong> de l'or non déclaré.
+      </div>
+    </section>
+
+    <!-- Paiement & recours -->
+    <section>
+      <h3>5. Modalités de paiement et voies de recours</h3>
+      <div class="recours">
+        <p><strong>Paiement :</strong> Immédiat ou dans un délai de <strong>30 jours acompte de 4000</strong> à compter de la notification. Passé ce délai, majoration de 10 %.</p>
+[12/10/2026 13:29] Winwincash: <p style="margin-top:8px;"><strong>Recours :</strong> Contestation possible dans un délai de <strong>2 mois</strong> par recours hiérarchique auprès du Directeur général des douanes ou recours contentieux devant le tribunal judiciaire.</p>
+        <p style="margin-top:8px;"><strong>Saisie :</strong> Les lingots sont retenus à la disposition de l'administration jusqu'au paiement intégral ou décision judiciaire définitive.</p>
+      </div>
+    </section>
+
+    <!-- Signatures -->
+    <div class="signature">
+      <div>
+        <p>Fait à Paris, le 12/10/2026</p>
+        <p style="margin-top:30px;">L'Inspecteur des Douanes,</p>
+        <p style="margin-top:40px; border-top:1px solid #333; width:200px;">Signature</p>
+      </div>
+      <div class="cachet">
+        RÉPUBLIQUE<br>FRANÇAISE<br>—<br>DOUANES<br>—<br>SERVICE<br>PARIS-CDG
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Document à conserver — Toute contestation doit être adressée par écrit au service émetteur.<br>
+    © Direction Générale des Douanes et Droits Indirects.
+  </footer>
+
+  <div class="tricolore">
+    <div class="bleu"></div>
+    <div class="blanc"></div>
+    <div class="rouge"></div>
+  </div>
+
+</div>
+
+</body>
+</html>
